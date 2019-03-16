@@ -13,13 +13,15 @@
                 android:id="@+id/normalmap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Map" />
+                android:text="Map"
+        android:onClick="radio_button_click"/>
 
         <RadioButton
                 android:id="@+id/streetview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="StreetView Panorama" />
+                android:text="StreetView Panorama"
+                android:onClick="radio_button_click"/>
     </RadioGroup>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                  xmlns:tools="http://schemas.android.com/tools"

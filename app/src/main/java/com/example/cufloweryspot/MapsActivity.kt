@@ -8,10 +8,8 @@ import com.google.android.gms.maps.*
 
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import android.R
 import android.widget.RadioButton
-
-
+import android.widget.Toast
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnStreetViewPanoramaReadyCallback {
@@ -25,20 +23,43 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnStreetViewPanora
     private lateinit var mMap: GoogleMap
     private lateinit var xMap: StreetViewPanorama
     private lateinit var radioGroup: RadioGroup
+    private lateinit var radioMap: RadioButton
+    private lateinit var radioPano: RadioButton
+    private var map_type: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         setContentView(R.layout.activity_maps)
         latlong = intent.getFloatArrayExtra("coord")
-        Log.d("latlong",latlong[0].toString())
+        map_type = intent.getIntExtra("type",0)
+        radioMap = findViewById<RadioButton>(R.id.normalmap)
+        radioPano = findViewById<RadioButton>(R.id.streetview)
+        Log.d("latlong", latlong[0].toString()+" "+latlong[1].toString())
         radioGroup = findViewById(R.id.ridx)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        normalView()
-
-     //   mapFragment.getMapAsync(this)
+        radioGroup.clearCheck()
+        when(map_type)
+        {
+            0-> {
+                radioGroup.check(radioMap.id)
+                normalView()
+            }
+            1->{
+                radioGroup.check(radioPano.id)
+                panorama()
+            }
+        }
+    }
+    fun radio_button_click(view: View){
+        // Get the clicked radio button instance
+        val radio: RadioButton = findViewById(radioGroup.checkedRadioButtonId)
+        when(radioGroup.indexOfChild(radio))
+        {
+            0->normalView()
+            1->panorama()
+        }
 
     }
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -75,4 +96,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnStreetViewPanora
 
 
     }
+
 }

@@ -35,8 +35,8 @@ class FloweryAdapter(val context: Context,val item: MutableList<Flowery>)
 
 
         override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-            menu?.add(this.adapterPosition, v!!.getId(), 0, "Call");//groupId, itemId, order, title
-            menu?.add(this.adapterPosition, v!!.getId(), 0, "SMS");
+            menu?.add(this.adapterPosition, 0, 0, "Call");//groupId, itemId, order, title
+            menu?.add(this.adapterPosition, 1, 0, "SMS");
 
         }
 
