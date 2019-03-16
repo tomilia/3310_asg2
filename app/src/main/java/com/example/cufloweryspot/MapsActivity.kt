@@ -72,17 +72,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnStreetViewPanora
     fun normalView()
     {
         val mapFragment = SupportMapFragment()
+        mapFragment
         getSupportFragmentManager().beginTransaction()
             .replace(R.id.map,
-                mapFragment).commit()
+                mapFragment,"normal_map").addToBackStack("normal_map").commit()
+        Log.d("fragcount",supportFragmentManager.backStackEntryCount.toString())
         mapFragment.getMapAsync(this)
     }
     fun panorama()
     {
+
         val streetViewFragment = SupportStreetViewPanoramaFragment()
         getSupportFragmentManager().beginTransaction()
             .replace(R.id.map,
-                streetViewFragment).commit()
+                streetViewFragment,"street_view").addToBackStack("street_view").commit()
+        Log.d("fragcount",supportFragmentManager.backStackEntryCount.toString())
         streetViewFragment.getStreetViewPanoramaAsync(this)
     }
     override fun onMapReady(googleMap: GoogleMap) {
@@ -95,6 +99,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnStreetViewPanora
         mMap.moveCamera(CameraUpdateFactory.zoomTo(18.0f))
 
 
+    }
+
+    override fun onBackPressed() {
+
+        if(getSupportFragmentManager().backStackEntryCount>1) {
+            getSupportFragmentManager().popBackStack()
+            var index = getSupportFragmentManager().backStackEntryCount-2
+            val backEntry = supportFragmentManager.getBackStackEntryAt(index)
+            val tag = backEntry.name
+            when(tag)
+            {
+                "normal_map"->radioGroup.check(radioMap.id)
+                "street_view"->radioGroup.check(radioPano.id)
+            }
+            Log.d("tagx",tag)
+
+
+
+        }
+        else {
+            super.onBackPressed()
+            finish()
+
+        }
     }
 
 }
