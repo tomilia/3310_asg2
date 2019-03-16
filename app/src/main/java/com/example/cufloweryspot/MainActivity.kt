@@ -51,7 +51,9 @@ class MainActivity : AppCompatActivity() {
         if (exif.getLatLong(latlong))
         {
             val intent = Intent(this,MapsActivity::class.java)
-            intent.putExtra("coord", latlong);
+            intent.putExtra("coord", latlong)
+            Log.d("tpye",item.itemId.toString())
+            intent.putExtra("type",item.itemId)
             startActivity(intent);
         }
         return super.onContextItemSelected(item)
