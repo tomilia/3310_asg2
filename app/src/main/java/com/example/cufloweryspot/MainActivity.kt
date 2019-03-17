@@ -50,8 +50,10 @@ class MainActivity : AppCompatActivity() {
         val exif = ExifInterface(resources.openRawResource(items[item!!.groupId].imageid))
         if (exif.getLatLong(latlong))
         {
+
             val intent = Intent(this,MapsActivity::class.java)
             intent.putExtra("coord", latlong)
+
             Log.d("tpye",item.itemId.toString())
             intent.putExtra("type",item.itemId)
             startActivity(intent);

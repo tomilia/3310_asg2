@@ -1,9 +1,7 @@
 package com.example.cufloweryspot
 
 import android.content.Context
-import android.media.ExifInterface
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.*
 import kotlinx.android.synthetic.main.listview_row.view.*
 
@@ -35,8 +33,8 @@ class FloweryAdapter(val context: Context,val item: MutableList<Flowery>)
 
 
         override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-            menu?.add(this.adapterPosition, 0, 0, "Call");//groupId, itemId, order, title
-            menu?.add(this.adapterPosition, 1, 0, "SMS");
+            menu?.add(this.adapterPosition, 0, 0, "Show Location on Map");//groupId, itemId, order, title
+            menu?.add(this.adapterPosition, 1, 0, "Show StreetView Panorama");
 
         }
 
