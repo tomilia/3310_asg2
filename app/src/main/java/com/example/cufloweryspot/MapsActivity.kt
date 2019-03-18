@@ -14,7 +14,7 @@ import android.widget.Toast
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnStreetViewPanoramaReadyCallback {
     override fun onStreetViewPanoramaReady(p0: StreetViewPanorama?) {
-        p0!!.setPosition(LatLng(latlong[0].toDouble(),latlong[1].toDouble()   ))
+        p0!!.setPosition(LatLng(latlong[0].toDouble(),latlong[1].toDouble()))
 
 
           }
@@ -72,7 +72,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnStreetViewPanora
     fun normalView()
     {
         val mapFragment = SupportMapFragment()
-        mapFragment
         getSupportFragmentManager().beginTransaction()
             .replace(R.id.map,
                 mapFragment,"normal_map").addToBackStack("normal_map").commit()
